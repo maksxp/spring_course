@@ -7,9 +7,36 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+<!--    line below is for setup myApp.properties for XML configuration-->
+    <context:property-placeholder location="classpath:myApp.properties"/>
+
     <bean id="myPet"
           class="spring_introduction.Dog">
     </bean>
+
+<!--     this bean is for creating bean via Constructor-->
+<!--    <bean id="myPerson"-->
+<!--        class="spring_introduction.Person">-->
+<!--        <constructor-arg ref="myPet"/>-->
+<!--    </bean>-->
+
+    <!--     this bean is for creating bean via Setter-->
+        <bean id="myPerson"
+            class="spring_introduction.Person">
+<!--            line below calls method setPet in class Person-->
+            <property name="pet" ref="myPet"/>
+
+<!--&lt;!&ndash;            2 lines below call method setSurname and setAge in class Person&ndash;&gt;-->
+<!--            <property name="surname" value="MMM"/>-->
+<!--            <property name="age" value="18"/>-->
+
+<!--            2 lines below set values from myApp.properties file using methods setSurname and setAge in class Person -->
+            <property name="surname" value="${person.surname}"/>
+            <property name="age" value="${person.age}"/>
+        </bean>
+
+
+
 
 <!--    <bean id="myPet2"-->
 <!--          class="spring_introduction.Cat">-->
